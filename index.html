@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Открыть Telegram</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; background: #f9f9f9; }
+    h2 { font-size: 24px; margin-bottom: 20px; }
+    p { font-size: 16px; margin-bottom: 15px; }
+    a.button {
+      display: inline-block;
+      padding: 15px 25px;
+      background-color: #2aabee;
+      color: white;
+      border-radius: 8px;
+      font-size: 18px;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>👋 Привет!</h2>
+  <p>Нажми кнопку ниже, чтобы открыть Telegram-бота.</p>
+  <p>❗ Если не работает — нажми ⋮ и выбери «Открыть в браузере»</p>
+
+  <a href="tg://resolve?domain=alinalive18_bot" class="button">➡️ Открыть в Telegram</a>
+
+  <script>
+    const isTikTok = navigator.userAgent.toLowerCase().includes("tiktok");
+    if (!isTikTok) {
+      window.location.href = "tg://resolve?domain=alinalive18_bot";
+    }
+  </script>
+
+</body>
+</html>
