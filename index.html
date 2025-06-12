@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Найди меня в Telegram</title>
+  <title>Find me on Telegram</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body { font-family: sans-serif; text-align: center; padding: 50px; background: #f0f0f0; }
@@ -32,23 +32,31 @@
 </head>
 <body>
 
-  <h2>🔍 Найди меня в Telegram</h2>
-  <p>Скопируй мое имя и вставь в поиск Telegram:</p>
+  <h2 id="title">Find me on Telegram</h2>
+  <p id="description">Copy my username and paste it into Telegram search:</p>
 
   <input type="text" value="alinalive18_bot" id="botName" readonly>
   <br><br>
-  <button class="button" onclick="copyBotName()">📋 Скопировать</button>
-  <div id="copiedMsg" class="copied">✅ Скопировано! Теперь вставь в Telegram.</div>
+  <button class="button" id="copyBtn" onclick="copyBotName()">📋 Copy</button>
+  <div id="copiedMsg" class="copied">✅ Copied! Now paste it in Telegram.</div>
 
   <script>
+    const lang = navigator.language.toLowerCase();
+
+    if (lang.startsWith("ru")) {
+      document.getElementById("title").innerText = "Найди меня в Telegram";
+      document.getElementById("description").innerText = "Скопируй мое имя и вставь в поиск Telegram:";
+      document.getElementById("copyBtn").innerText = "📋 Скопировать";
+      document.getElementById("copiedMsg").innerText = "✅ Скопировано! Теперь вставь в Telegram.";
+    }
+
     function copyBotName() {
       const input = document.getElementById("botName");
       input.select();
       input.setSelectionRange(0, 99999);
       document.execCommand("copy");
 
-      const msg = document.getElementById("copiedMsg");
-      msg.style.display = "block";
+      document.getElementById("copiedMsg").style.display = "block";
     }
   </script>
 
