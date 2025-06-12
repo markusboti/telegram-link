@@ -2,72 +2,53 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Открыть Telegram</title>
+  <title>Найди меня в Telegram</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 50px;
-      background: #f5f5f5;
-    }
-    h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
+    body { font-family: sans-serif; text-align: center; padding: 50px; background: #f0f0f0; }
+    h2 { font-size: 24px; margin-bottom: 20px; }
+    p { font-size: 16px; margin-bottom: 15px; }
     .button {
-      display: inline-block;
-      padding: 15px 25px;
-      background-color: #2aabee;
+      background: #2aabee;
       color: white;
-      border-radius: 8px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
       font-size: 18px;
-      text-decoration: none;
-      margin-top: 20px;
+      cursor: pointer;
     }
-    .notice {
-      background: #fff3cd;
-      color: #856404;
-      padding: 15px;
-      border-radius: 5px;
-      margin-top: 20px;
-      border: 1px solid #ffeeba;
-      max-width: 360px;
-      margin-left: auto;
-      margin-right: auto;
+    .copied {
+      color: green;
+      margin-top: 10px;
+      display: none;
+    }
+    input {
+      font-size: 18px;
+      padding: 10px;
+      width: 250px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <h2>👋 Привет!</h2>
-  <p>Нажми кнопку ниже, чтобы открыть Telegram-бота:</p>
+  <h2>🔍 Найди меня в Telegram</h2>
+  <p>Скопируй имя бота и вставь в поиск Telegram:</p>
 
-  <a href="tg://resolve?domain=alinalive18_bot" class="button">➡️ Открыть в Telegram</a>
-
-  <div id="notice" class="notice" style="display: none;">
-    ❗ TikTok не может открыть Telegram напрямую.<br>
-    👉 Нажми <b>⋮</b> в правом верхнем углу и выбери:<br>
-    <strong>«Открыть в браузере»</strong><br>
-    Потом снова нажми кнопку.
-  </div>
+  <input type="text" value="alinalive18_bot" id="botName" readonly>
+  <br><br>
+  <button class="button" onclick="copyBotName()">📋 Скопировать</button>
+  <div id="copiedMsg" class="copied">✅ Скопировано! Теперь вставь в Telegram.</div>
 
   <script>
-    const ua = navigator.userAgent.toLowerCase();
-    const isTikTok = ua.includes("tiktok");
-    const isInstagram = ua.includes("instagram");
-    const isFacebook = ua.includes("fbav");
+    function copyBotName() {
+      const input = document.getElementById("botName");
+      input.select();
+      input.setSelectionRange(0, 99999);
+      document.execCommand("copy");
 
-    if (isTikTok || isInstagram || isFacebook) {
-      // Показываем инструкцию
-      document.getElementById("notice").style.display = "block";
-    } else {
-      // Пытаемся открыть Telegram напрямую
-      window.location.href = "tg://resolve?domain=alinalive18_bot";
+      const msg = document.getElementById("copiedMsg");
+      msg.style.display = "block";
     }
   </script>
 
