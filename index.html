@@ -5,9 +5,20 @@
   <title>Открыть Telegram</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 50px; background: #f5f5f5; }
-    h2 { font-size: 24px; margin-bottom: 20px; }
-    p { font-size: 16px; margin-bottom: 10px; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f5f5f5;
+    }
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
     .button {
       display: inline-block;
       padding: 15px 25px;
@@ -25,6 +36,9 @@
       border-radius: 5px;
       margin-top: 20px;
       border: 1px solid #ffeeba;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
@@ -33,19 +47,27 @@
   <h2>👋 Привет!</h2>
   <p>Нажми кнопку ниже, чтобы открыть Telegram-бота:</p>
 
-  <a href="tg://resolve?domain=alinalive18_bot" class="button">➡️ Открыть Telegram</a>
+  <a href="tg://resolve?domain=alinalive18_bot" class="button">➡️ Открыть в Telegram</a>
 
-  <div id="tiktokNotice" class="notice" style="display: none;">
-    ❗ TikTok блокирует открытие Telegram.<br>
-    👉 Нажми ⋮ в правом верхнем углу и выбери<br><strong>"Открыть в браузере"</strong>, затем снова нажми кнопку.
+  <div id="notice" class="notice" style="display: none;">
+    ❗ TikTok не может открыть Telegram напрямую.<br>
+    👉 Нажми <b>⋮</b> в правом верхнем углу и выбери:<br>
+    <strong>«Открыть в браузере»</strong><br>
+    Потом снова нажми кнопку.
   </div>
 
   <script>
-    const isTikTok = navigator.userAgent.toLowerCase().includes("tiktok");
-    if (!isTikTok) {
-      window.location.href = "tg://resolve?domain=alinalive18_bot";
+    const ua = navigator.userAgent.toLowerCase();
+    const isTikTok = ua.includes("tiktok");
+    const isInstagram = ua.includes("instagram");
+    const isFacebook = ua.includes("fbav");
+
+    if (isTikTok || isInstagram || isFacebook) {
+      // Показываем инструкцию
+      document.getElementById("notice").style.display = "block";
     } else {
-      document.getElementById("tiktokNotice").style.display = "block";
+      // Пытаемся открыть Telegram напрямую
+      window.location.href = "tg://resolve?domain=alinalive18_bot";
     }
   </script>
 
