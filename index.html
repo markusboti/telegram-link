@@ -5,10 +5,10 @@
   <title>Открыть Telegram</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 50px; background: #f9f9f9; }
+    body { font-family: sans-serif; text-align: center; padding: 50px; background: #f5f5f5; }
     h2 { font-size: 24px; margin-bottom: 20px; }
-    p { font-size: 16px; margin-bottom: 15px; }
-    a.button {
+    p { font-size: 16px; margin-bottom: 10px; }
+    .button {
       display: inline-block;
       padding: 15px 25px;
       background-color: #2aabee;
@@ -18,24 +18,36 @@
       text-decoration: none;
       margin-top: 20px;
     }
+    .notice {
+      background: #fff3cd;
+      color: #856404;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      border: 1px solid #ffeeba;
+    }
   </style>
 </head>
 <body>
 
   <h2>👋 Привет!</h2>
-  <p>Нажми кнопку ниже, чтобы открыть Telegram-бота.</p>
-  <p>❗ Если не работает — нажми ⋮ и выбери «Открыть в браузере»</p>
+  <p>Нажми кнопку ниже, чтобы открыть Telegram-бота:</p>
 
-  <a href="tg://resolve?domain=alinalive18_bot" class="button">➡️ Открыть в Telegram</a>
+  <a href="tg://resolve?domain=alinalive18_bot" class="button">➡️ Открыть Telegram</a>
 
-<script>
-  const isTikTok = navigator.userAgent.toLowerCase().includes("tiktok");
-  if (!isTikTok) {
-    window.location.href = "tg://resolve?domain=alinalive18_bot";
-  }
-</script>
+  <div id="tiktokNotice" class="notice" style="display: none;">
+    ❗ TikTok блокирует открытие Telegram.<br>
+    👉 Нажми ⋮ в правом верхнем углу и выбери<br><strong>"Открыть в браузере"</strong>, затем снова нажми кнопку.
+  </div>
 
+  <script>
+    const isTikTok = navigator.userAgent.toLowerCase().includes("tiktok");
+    if (!isTikTok) {
+      window.location.href = "tg://resolve?domain=alinalive18_bot";
+    } else {
+      document.getElementById("tiktokNotice").style.display = "block";
+    }
+  </script>
 
-  
 </body>
 </html>
